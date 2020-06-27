@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node ./server/index.js"
+    "client": "cd client && yarn start",
+    "server": "nodemon --exec babel-node ./server/index.js",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,8 @@
   },
   "homepage": "https://github.com/sbssai123/music-animator#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "concurrently": "^5.2.0",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -28,6 +32,7 @@
     "@babel/core": "^7.10.2",
     "@babel/node": "^7.10.1",
     "@babel/preset-env": "^7.10.2",
+    "babel-loader": "^8.1.0",
     "nodemon": "^2.0.4"
   }
 }
