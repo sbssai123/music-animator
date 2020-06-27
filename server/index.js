@@ -15,6 +15,6 @@ app.get('/', (req, res) => {
 app.use('/oauth', oauth)
 app.use('/player', player)
 
-app.listen(3000, () => {
-    console.log("Serving on port 3000!")
+app.listen(5000, () => {
+    console.log("Serving on port 5000!")
 })
