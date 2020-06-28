@@ -17,7 +17,8 @@ router.get('/login', (req, res) => {
         redirect_uri: process.env.REDIRECT_URI,
         state: state
     })
-    res.redirect('https://accounts.spotify.com/authorize?' + queryParams)
+    const href = 'https://accounts.spotify.com/authorize?' + queryParams
+    res.status(200).send({url: href})
 })
 
 router.get('/callback', async (req, res) => {
@@ -48,11 +49,10 @@ router.get('/callback', async (req, res) => {
                 // Store tokens for requests in cookie
                 res.cookie('SPOTIFY_ACCESS_TOKEN', response.body.access_token)
                 res.cookie('SPOTIFY_REFRESH_TOKEN', response.body.refresh_token)
-                res.redirect(process.env.APP_BASE_URI + '/player')
+                res.redirect(process.env.APP_BASE_URI)
             }
             else {
-                // TODO: Make a real error state
-                console.log("error")
+                res.status(400).send(error)
             }
         })
     }
