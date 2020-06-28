@@ -12,11 +12,9 @@ class MusicAnimator extends Component {
     render() {
         console.log(this.props.currentSong)
         return (
-            <div>
-                <canvas>
+            <canvas>
 
-                </canvas>
-            </div>
+            </canvas>
         );
     }
 }
