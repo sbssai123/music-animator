@@ -1,20 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { getCurrentSongInfo } from './../actions/currentSongAction'
 
 class MusicAnimator extends Component {
 
-    constructor(props) {
-        super(props)
-    }
-
-    handleLogin() {
-        
+    componentDidMount() {
+        this.props.getCurrentSongInfo(this.props.token)
     }
     
     render() {
+        console.log(this.props.currentSong)
         return (
-            <button onClick={this.handleLogin}></button>
+            <div>
+                <canvas>
+
+                </canvas>
+            </div>
         );
     }
 }
 
-export default MusicAnimator;
+const mapStateToProps = (state) => {
+    return {
+        token: state.authReducer.token,
+        currentSong: state.currentSongReducer.currentSong
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators(
+        {
+            getCurrentSongInfo
+        },
+        dispatch
+    )
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MusicAnimator);

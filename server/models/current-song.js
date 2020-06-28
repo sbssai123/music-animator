@@ -9,7 +9,7 @@ export async function currentSong(accessToken) {
         const options = {
             uri: 'https://api.spotify.com/v1/me/player',
             headers: {
-                'Authorization': 'Bearer ' + accessToken
+                'Authorization': accessToken
             },
             json: true
         }

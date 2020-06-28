@@ -2,12 +2,10 @@ import express from 'express'
 import { currentSong } from '../models/current-song'
 
 const router = express.Router()
-const ACCESS_TOKEN = 'SPOTIFY_ACCESS_TOKEN'
 
-router.get('/', async(req, res) => {
+router.get('/currentSong', async(req, res) => {
     try {
-        const data = await currentSong(req.cookies[ACCESS_TOKEN])
-        console.log(data)
+        const data = await currentSong(req.get('Authorization'))
         res.status(200).send(data)
     }
     catch (err) {

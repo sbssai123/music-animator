@@ -4,16 +4,12 @@ import { bindActionCreators } from 'redux';
 import Cookies from 'js-cookie';
 import './App.css';
 import { setAccessToken, login } from './actions/authAction';
-
-// const App = () => (
-//   <MusicAnimator />
-// );
+import MusicAnimator from './components/MusicAnimator';
 
 class App extends Component {
 
   componentDidMount() {
     const accessToken = Cookies.get('SPOTIFY_ACCESS_TOKEN')
-    console.log("ACCESS_TOKEN", accessToken)
     if(accessToken) {
       this.props.setAccessToken(accessToken)
     }
@@ -24,9 +20,9 @@ class App extends Component {
 
   render() {
     return (
-      this.props.loginUrl ?
+      !this.props.token ?
       <button onClick={() => window.location.assign(this.props.loginUrl)}>Login</button> :
-      <div></div>
+      <MusicAnimator/>
     )
   }
 }
